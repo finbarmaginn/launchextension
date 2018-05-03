@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Action</title>
+  </head>
+  <body>
+    <h2>Action Template</h2>
+    <form>
+      <p>
+        <label for="message">What message shall we pop up?</label>
+        <input type="text" name="message">
+      </p>
+      <p>
+        <label for="delay">How long before we pop up?</label>
+        <input type="number" name="delay">ms
+      </p>
+    </form>
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      window.extensionBridge.register({
+        init: function(info) {
+          if (info.settings) {
+            document.getElementsByName("message")[0].value = info.settings.message;
+            document.getElementsByName("delay")[0].value = info.settings.delay;
+            // TODO Populate form values from persisted settings.
+          }
+        },
+
+        getSettings: function() {
+          // TODO Return settings object from form values.
+          return {
+            message: document.getElementsByName("message")[0].value,
+            delay: parseInt(document.getElementsByName("delay")[0].value + "", 10)
+          }
+        },
+
+        validate: function() {
+          // TODO Return whether settings are valid.
+          var message = document.getElementsByName("message")[0].value,
+              delay = document.getElementsByName("delay")[0].value,
+              tmp = delay.value + "",
+              numericalDelay = tmp - 0,
+              valid = false;
+
+          if('undefined' !== typeof message && message && message.length > 0 && 'undefined' !== typeof numericalDelay && 0 < numericalDelay){
+            valid = true;
+          }
+          return valid;
+        }
+      });
+    </script>
+  </body>
+</html>

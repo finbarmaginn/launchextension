@@ -1,0 +1,23 @@
+{
+  "displayName": "Finbar's test",
+  "name": "finbars-test",
+  "version": "1.0.0",
+  "description": "A simple helper to do something helpful.",
+  "author": {
+    "name": "Finbar Maginn"
+  },
+  "viewBasePath": "src/view/",
+  "actions": [
+    {
+      "displayName": "Alert",
+      "name": "alert",
+      "libPath": "src/lib/actions/alert.js",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "viewPath": "actions/alert.html"
+    }
+  ]
+}
